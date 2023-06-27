@@ -33,7 +33,7 @@ def plot_tree_to_file(clasf, train_X):
 
 def evaluate(predict_Y, test_Y):
     print("Random Forest classifier")
-
+    print(classes)
     nr_correct = (test_Y == predict_Y).sum()
     nr_bool_corrent = (np.array(predict_Y != 0) == np.array(test_Y != 0)).sum()
     nr_failed = (test_Y != 0).sum()
