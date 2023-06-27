@@ -38,8 +38,8 @@ features_to_draw = [
 classes = [
     (0, "Normal"),
     (20, "Likely to fail in 20 days"),
-    (7, "Likely to fail in 7 days"),
-    (3, "Likely to fail in 3 days")
+    (3, "Likely to fail in 3 days"),
+    (1, "Likely to fail in 1 days")
 ]
 
 features = [
