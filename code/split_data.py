@@ -1,20 +1,6 @@
 #!/usr/bin/env python3
 
-# CONFIG {
-clean_csv = '../data/data_Q1_2023_clean.csv'
-train_csv = '../data/data_Q1_2023_train.csv'
-test_csv  = '../data/data_Q1_2023_test.csv'
-classes = [
-    (0, "Normal"),
-    (20, "Likely to fail in 20 days"),
-    (7, "Likely to fail in 7 days"),
-    (3, "Likely to fail in 3 days"),
-    (1, "Likely to fail tomorrow")
-]
-max_date = "2023-03-11"
-sample_size_each = int(1e5)
-train_set_proportion = 0.9
-# CONFIG }
+from config import clean_csv, train_csv, test_csv, classes, max_date, sample_size_each, train_set_proportion
 
 from tqdm import tqdm
 import pandas

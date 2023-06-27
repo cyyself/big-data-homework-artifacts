@@ -1,21 +1,6 @@
 #!/usr/bin/env python3
 
-# CONFIG {
-data_dir = '../data/data_Q1_2023'
-dst_csv = '../data/data_Q1_2023_clean.csv'
-preserve_features = [
-    'date',
-    'serial_number',
-    'model',
-    'capacity_bytes',
-    'failure',
-    'smart_5_raw',
-    'smart_187_raw',
-    'smart_188_raw',
-    'smart_197_raw',
-    'smart_198_raw'
-]
-# CONFIG }
+from config import data_dir, clean_csv, preserve_features
 
 import os
 import pandas
@@ -40,4 +25,4 @@ for root, dirs, files in os.walk(data_dir):
             for x in cur_failed_list:
                 failed_disk_set.add(x)
 print("Saving cleaned data to csv")
-cur_csv.to_csv(dst_csv)
+cur_csv.to_csv(clean_csv)
