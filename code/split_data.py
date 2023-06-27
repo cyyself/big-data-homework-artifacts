@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from config import clean_csv, train_csv, test_csv, classes, max_date, sample_size_each, train_set_proportion
+from config import clean_csv, train_csv, test_csv, classes, max_date, sample_size_each, train_set_proportion, use_real_failure_rate_for_each_class
 
 from tqdm import tqdm
 import pandas
@@ -35,10 +35,16 @@ for id, row in tqdm(data[data['serial_number'].isin(failed_date)].iterrows()):
 # Warn: same SN must not be in the both test and train set
 each_class = []
 sn = set()
-for i in range(len(classes)):
-    cur_class = resample(data[data['failure'] == i], n_samples=sample_size_each)
-    sn = sn.union(set(cur_class['serial_number']))
-    each_class.append(cur_class)
+if use_real_failure_rate_for_each_class:
+    normal_class = resample(data[data['failure'] == 0], n_samples=sample_size_each)
+    failed_class = resample(data[data['failure'] != 0], n_samples=sample_size_each)
+    sn = sn.union(set(normal_class['serial_number']).union(set(failed_class['serial_number'])))
+    each_class = [normal_class, failed_class]
+else:
+    for i in range(len(classes)):
+        cur_class = resample(data[data['failure'] == i], n_samples=sample_size_each)
+        sn = sn.union(set(cur_class['serial_number']))
+        each_class.append(cur_class)
 
 sn_list = list(sn)
 split_pos = int(len(sn_list) * train_set_proportion)
@@ -55,7 +61,7 @@ assert(len(train_sn) + len(test_sn) - len(set(train_sn).union(set(test_sn))) == 
 # Save train and test set
 train_set = None
 test_set = None
-for i in range(len(classes)):
+for i in range(len(each_class)):
     cur_class = each_class[i]
     cur_train = cur_class[cur_class['serial_number'].isin(train_sn)]
     cur_test = cur_class[cur_class['serial_number'].isin(test_sn)]

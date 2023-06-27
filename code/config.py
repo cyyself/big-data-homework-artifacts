@@ -54,3 +54,4 @@ classifier = RandomForestClassifier(verbose=True)
 max_date = "2023-03-11"
 sample_size_each = int(1e5)
 train_set_proportion = 0.9
+use_real_failure_rate_for_each_class = True
