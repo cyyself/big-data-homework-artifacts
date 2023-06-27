@@ -35,13 +35,18 @@ def evaluate(predict_Y, test_Y):
     print("Random Forest classifier")
 
     nr_correct = (test_Y == predict_Y).sum()
-    nr_recall = (np.array(predict_Y != 0) == np.array(test_Y != 0)).sum()
+    nr_bool_corrent = (np.array(predict_Y != 0) == np.array(test_Y != 0)).sum()
+    nr_failed = (test_Y != 0).sum()
+    nr_recall = sum([(predict_Y[i] != 0) == (test_Y[i] != 0) and test_Y[i] != 0 for i in range(len(test_Y))])
     nr_all = len(test_Y)
     
     acc_rate = nr_correct / nr_all
     print("The accuracy rate is {}".format(acc_rate))
 
-    recall_rate = nr_recall / nr_all
+    fail_acc_rate = nr_bool_corrent / nr_all
+    print("The predict fail acc rate is {}".format(fail_acc_rate))
+
+    recall_rate = nr_recall / nr_failed
     print("The recall rate is {}".format(recall_rate))
 
 drop_unused_features(train_data)
