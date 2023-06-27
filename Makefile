@@ -15,4 +15,4 @@ data/data_Q1_2023_test.csv: code/split_data.py data/data_Q1_2023_clean.csv code/
 .PHONY: run
 
 run: data/data_Q1_2023_test.csv code/train_test.py code/config.py
-	cd code && python3 train_test.py
+	cd code && python3 train_test.py >> result.log
