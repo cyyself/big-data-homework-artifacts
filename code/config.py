@@ -38,8 +38,7 @@ features_to_draw = [
 classes = [
     (0, "Normal"),
     (20, "Likely to fail in 20 days"),
-    (3, "Likely to fail in 3 days"),
-    (1, "Likely to fail in 1 days")
+    (2, "Likely to fail in 2 days")
 ]
 
 features = [
@@ -53,5 +52,5 @@ features = [
 classifier = RandomForestClassifier(verbose=True)
 max_date = "2023-03-11"
 sample_size_each = int(1e5)
-train_set_proportion = 0.9
+train_set_proportion = 0.90
 use_real_failure_rate_for_each_class = True
