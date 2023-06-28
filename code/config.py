@@ -54,3 +54,4 @@ max_date = "2023-03-11"
 sample_size_each = int(1e4)
 train_set_proportion = 0.90
 use_real_failure_rate_for_each_class = True
+random_state=1
