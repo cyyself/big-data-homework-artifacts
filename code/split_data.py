@@ -46,7 +46,7 @@ else:
         sn = sn.union(set(cur_class['serial_number']))
         each_class.append(cur_class)
 
-sn_list = list(sn)
+sn_list = sorted(list(sn))
 train_sn = set()
 test_sn = set()
 for idx in range(len(sn_list)):
