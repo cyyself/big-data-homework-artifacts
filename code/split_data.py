@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from config import clean_csv, train_csv, test_csv, classes, max_date, sample_size_each, train_set_proportion, use_real_failure_rate_for_each_class, random_state
+from config import clean_csv, train_csv, test_csv, classes, max_date, sample_size_each, train_size, test_size, use_real_failure_rate_for_each_class, random_state
 
 from tqdm import tqdm
 import pandas
@@ -47,9 +47,13 @@ else:
         each_class.append(cur_class)
 
 sn_list = list(sn)
-split_pos = int(len(sn_list) * train_set_proportion)
-train_sn = set(sn_list[:split_pos])
-test_sn = set(sn_list[split_pos:])
+train_sn = set()
+test_sn = set()
+for idx in range(len(sn_list)):
+    if (idx % (train_size + test_size)) < train_size:
+        train_sn.add(sn_list[idx])
+    else:
+        test_sn.add(sn_list[idx])
 
 print("Train SN size:",len(train_sn))
 print("Test SN size:",len(test_sn))
