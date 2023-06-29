@@ -49,10 +49,10 @@ features = [
     'smart_197_raw',
     'smart_198_raw'
 ]
-classifier = RandomForestClassifier(verbose=True)
 max_date = "2023-03-11"
 sample_size_each = int(1e4)
 train_size = 9
 test_size = 1
 use_real_failure_rate_for_each_class = True
-random_state=4
+random_state=2
+classifier = RandomForestClassifier(verbose=True, random_state=random_state)
