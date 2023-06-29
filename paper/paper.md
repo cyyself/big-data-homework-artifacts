@@ -1,5 +1,15 @@
 ## 基于随机森林算法的硬盘故障预测
 
+陈泱宇 20221401001z@stu.cqu.edu.cn (cyy@stu.cqu.edu.cn)
+
+### 摘要
+
+在数据中心中，硬盘失效在所有硬件失效中占据了最大的比重，而数据丢失将造成难以估量的损失。然而，尽管有 S.M.A.R.T. 等技术用于监视硬盘的工作状态以及错误信息，仍然需要一种用于运维人员评估哪些硬盘可能需要进行更换，以及哪些硬盘需要优先进行更换的算法，以降低数据丢失的风险，提高数据中心的存储可靠性。
+
+本文参考了一些已有的大数据分析工作，尝试使用随机森林分类器对来自Backblaze数据中心的硬盘状态数据集进行挖掘，训练了一个在只得知当天硬盘 S.M.A.R.T. 信息的情况下能够分类硬盘正常、可能在20天内发生故障、可能在2天内发生故障的分类器来对硬盘故障进行预测。实验结果表明，该预测器达到了85.5%的分类准确率，90.0%的故障被正确预测，81.5%的故障硬盘能够被预测到。
+
+关键词：随机森林、故障预测、S.M.A.R.T.
+
  ### 引言
 
 在当下的大数据时代，硬盘作为一种存储介质存储了大量的具有价值的数据。然而，有关于数据中心硬件失效的调查数据显示，硬盘的失效率占所有硬件失效率的81.84%。[1] 且根据Backblaze的2023年第一季度的硬盘调查数据显示，硬盘的年故障率达到了1.54%。[2] 因此，硬盘作为数据中心中故障率最高的硬件，对其故障的发生进行预测可以有效降低数据丢失的风险，降低宕机时间，提高数据中心业务的可靠性。
@@ -146,11 +156,11 @@ $ \sigma = \sqrt{\frac{\sum_{b=1}^B (f_b(x')  - \hat{f})^2}{B-1} } $
 
 1. G. Wang, L. Zhang and W. Xu, "What Can We Learn from Four Years of Data Center Hardware Failures?," *2017 47th Annual IEEE/IFIP International Conference on Dependable Systems and Networks (DSN)*, Denver, CO, USA, 2017, pp. 25-36, doi: 10.1109/DSN.2017.26.
 2. Andy Klein Backblaze Drive Stats for Q1 2023 https://www.backblaze.com/blog/backblaze-drive-stats-for-q1-2023/
-3. SFF Committee (April 1, 1996). ["Specification for Self-Monitoring, Analysis and Reporting Technology (S.M.A.R.T.) SFF-8035i Revision 2.0"](https://web.archive.org/web/20140423014210/https://www.linux-mips.org/pub/linux/mips/people/macro/S.M.A.R.T./8035R2_0.PDF) (PDF).
-4. https://www.backblaze.com/b2/hard-drive-test-data.html
+3. SFF Committee (April 1, 1996). ["Specification for Self-Monitoring, Analysis and Reporting Technology (S.M.A.R.T.) SFF-8035i Revision 2.0"](https://web.archive.org/web/20140423014210/https://www.linux-mips.org/pub/linux/mips/people/macro/S.M.A.R.T./8035R2_0.PDF) .
+4. Backblaze Hard Drive Data and Stats https://www.backblaze.com/b2/hard-drive-test-data.html
 5. Tin Kam Ho, "Random decision forests," *Proceedings of 3rd International Conference on Document Analysis and Recognition*, Montreal, QC, Canada, 1995, pp. 278-282 vol.1, doi: 10.1109/ICDAR.1995.598994.
-6. https://scikit-learn.org/
+6. scikit-learn https://scikit-learn.org/
 7. Breiman, Leo. "Bagging predictors." *Machine learning* 24 (1996): 123-140.
 8. Shen, Jing, et al. "Random-forest-based failure prediction for hard disk drives." *International Journal of Distributed Sensor Networks* 14.11 (2018): 1550147718806480.
 9. Mahdisoltani, Farzaneh, Ioan A. Stefanovici, and Bianca Schroeder. "Proactive error prediction to improve storage system reliability." *USENIX Annual Technical Conference*. 2017.
-9. https://www.backblaze.com/blog/what-smart-stats-indicate-hard-drive-failures/
+10. What smart stats indicate hard drive failures? https://www.backblaze.com/blog/what-smart-stats-indicate-hard-drive-failures/
