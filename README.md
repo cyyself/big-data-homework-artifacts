@@ -10,6 +10,8 @@ Packages for Debian/Ubuntu:
 apt install python3 git make wget unzip
 ```
 
+Note: To reproduce the results, you should better use Python 3.11.2.
+
 Clone this repo or download it from my shared link.
 ```bash
 git clone https://github.com/cyyself/big-data-homework-artifacts.git
